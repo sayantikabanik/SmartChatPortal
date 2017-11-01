@@ -1,5 +1,8 @@
 import socket, select, string, sys
- 
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.test 
 def prompt() :
     sys.stdout.write('<You> ')
     sys.stdout.flush()
