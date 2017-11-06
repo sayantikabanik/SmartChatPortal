@@ -3,6 +3,7 @@ import MySQLdb
 import pymysql
 
 
+
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
                      user="root",         # your username
                      passwd="science",  # your password
@@ -15,7 +16,8 @@ def broadcast_data (sock, message):
     for socket in CONNECTION_LIST:
         if socket != server_socket and socket != sock :
             try :
-                socket.send(message)
+                #socket.send(message)
+                pass
             except :
                 # broken socket connection may be, chat client pressed ctrl+c for example
                 socket.close()
@@ -37,7 +39,7 @@ if __name__ == "__main__":
     # Add server socket to the list of readable connections
     CONNECTION_LIST.append(server_socket)
  
-    print "Chat server started on port " + str(PORT)
+    #print "Chat server started on port " + str(PORT)
  
     while 1:
         # Get the list sockets which are ready to be read through select
@@ -49,8 +51,8 @@ if __name__ == "__main__":
                 # Handle the case in which there is a new connection recieved through server_socket
                 sockfd, addr = server_socket.accept()
                 CONNECTION_LIST.append(sockfd)
-                print "Client (%s, %s) connected" % addr
-                cursor.execute("INSERT INTO clientchat(port) 			VALUES('addr')") 
+                #print "Client (%s, %s) connected" % addr
+                #cursor.execute("INSERT INTO clientchat(port) VALUES('%s')" % (addr) )
                 broadcast_data(sockfd, "[%s:%s] entered room\n" % addr)
              
             #Some incoming message from a client
@@ -65,7 +67,7 @@ if __name__ == "__main__":
                  
                 except:
                     broadcast_data(sock, "Client (%s, %s) is offline" % addr)
-                    print "Client (%s, %s) is offline" % addr
+                    #print "Client (%s, %s) is offline" % addr
                     sock.close()
                     CONNECTION_LIST.remove(sock)
                     continue

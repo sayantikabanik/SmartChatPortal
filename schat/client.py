@@ -1,13 +1,18 @@
 import socket, select, string, sys
 import MySQLdb
 import pymysql
+import sys, os
+
+# Disable
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
 
 
 db = MySQLdb.connect(host='127.0.0.1',    # your host, usually localhost
                      user="root",         # your username
                      passwd="science",  # your password
                      db="chat",
-		     	)        # name of the data base
+                )        # name of the data base
 #from pymongo import MongoClient
 #client = MongoClient()
 #db = client.test 
@@ -49,22 +54,27 @@ if __name__ == "__main__":
             #incoming message from remote server
             if sock == s:
                 data = sock.recv(4096)
-		cursor.execute("INSERT INTO clientchat (text) VALUES (data)")
+                #print "**"
+                #print "INSERT INTO clientchat (text) VALUES ('%s')"%(data)
+                if (data is not None):
+                    cursor.execute("INSERT INTO clientchat (text) VALUES ('%s')"%(data))
+                    db.commit()
                 if not data :
-                    print '\nDisconnected from chat server'
+                    print 'Disconnected from chat server'
                     sys.exit()
                 else :
                     #print data
                     sys.stdout.write(data)
-		    #cursor.execute("INSERT INTO clientchat (text) VALUES (data)")
+            #cursor.execute("INSERT INTO clientchat (text) VALUES (data)")
                     prompt()
              
             #user entered a message
             else :
                 msg = sys.stdin.readline()
-		cursor.execute("INSERT INTO clientchat (textuser) VALUES(msg)")
+                cursor.execute("INSERT INTO clientchat (textuser) VALUES('%s')"%(msg))
+                db.commit()
                 s.send(msg)
                 prompt()
-	
-db.commit()
+    
+
 db.close()
