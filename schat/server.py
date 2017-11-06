@@ -1,4 +1,13 @@
 import socket, select
+import MySQLdb
+import pymysql
+
+
+db = MySQLdb.connect(host="localhost",    # your host, usually localhost
+                     user="root",         # your username
+                     passwd="science",  # your password
+                     db="chat")        # name of the data base
+cursor = db.cursor()
  
 #Function to broadcast chat messages to all connected clients
 def broadcast_data (sock, message):
@@ -41,7 +50,7 @@ if __name__ == "__main__":
                 sockfd, addr = server_socket.accept()
                 CONNECTION_LIST.append(sockfd)
                 print "Client (%s, %s) connected" % addr
-                 
+                cursor.execute("INSERT INTO clientchat(port) 			VALUES('addr')") 
                 broadcast_data(sockfd, "[%s:%s] entered room\n" % addr)
              
             #Some incoming message from a client
@@ -62,3 +71,5 @@ if __name__ == "__main__":
                     continue
      
     server_socket.close()
+db.commit()
+db.close()

@@ -1,8 +1,17 @@
 import socket, select, string, sys
-from pymongo import MongoClient
+import MySQLdb
+import pymysql
 
-client = MongoClient()
-db = client.test 
+
+db = MySQLdb.connect(host='127.0.0.1',    # your host, usually localhost
+                     user="root",         # your username
+                     passwd="science",  # your password
+                     db="chat",
+		     	)        # name of the data base
+#from pymongo import MongoClient
+#client = MongoClient()
+#db = client.test 
+cursor = db.cursor()
 def prompt() :
     sys.stdout.write('<You> ')
     sys.stdout.flush()
@@ -40,16 +49,22 @@ if __name__ == "__main__":
             #incoming message from remote server
             if sock == s:
                 data = sock.recv(4096)
+		cursor.execute("INSERT INTO clientchat (text) VALUES (data)")
                 if not data :
                     print '\nDisconnected from chat server'
                     sys.exit()
                 else :
                     #print data
                     sys.stdout.write(data)
+		    #cursor.execute("INSERT INTO clientchat (text) VALUES (data)")
                     prompt()
              
             #user entered a message
             else :
                 msg = sys.stdin.readline()
+		cursor.execute("INSERT INTO clientchat (textuser) VALUES(msg)")
                 s.send(msg)
                 prompt()
+	
+db.commit()
+db.close()
