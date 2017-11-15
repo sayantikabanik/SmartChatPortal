@@ -57,7 +57,7 @@ if __name__ == "__main__":
                 #print "**"
                 #print "INSERT INTO clientchat (text) VALUES ('%s')"%(data)
                 if (data is not None):
-                    cursor.execute("INSERT INTO clientchat (text) VALUES ('%s')"%(data))
+                    cursor.execute("INSERT INTO chating (text) VALUES ('%s')"%(data))
                     db.commit()
                 if not data :
                     print 'Disconnected from chat server'
@@ -71,7 +71,7 @@ if __name__ == "__main__":
             #user entered a message
             else :
                 msg = sys.stdin.readline()
-                cursor.execute("INSERT INTO clientchat (textuser) VALUES('%s')"%(msg))
+                cursor.execute("INSERT INTO chating (text) VALUES('%s')"%(msg))
                 db.commit()
                 s.send(msg)
                 prompt()
