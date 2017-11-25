@@ -15,7 +15,7 @@ cursor = db.cursor()
 def putdata():
 	cursor.execute("SELECT * from chating")
 	row = cursor.fetchone()
-	print("printing the conversation")
+	print("printing the conversation on the console")
 	while row is not None:
             print(row)
             row = cursor.fetchone()
