@@ -3,6 +3,8 @@ import os
 import socket, select
 import MySQLdb
 import pymysql
+from textblob import TextBlob
+from textblob.sentiments import NaiveBayesAnalyzer
 
 
 
@@ -14,11 +16,18 @@ cursor = db.cursor()
 
 def putdata():
 	cursor.execute("SELECT * from chating")
+	#row = str([cell.encode('utf-8') for cell in row])
 	row = cursor.fetchone()
+
 	print("printing the conversation on the console")
 	while row is not None:
             print(row)
+            row= cursor.fetchone()
+            opinion=TextBlob(str(row),analyzer=NaiveBayesAnalyzer());
+            print(opinion.sentiment);
             row = cursor.fetchone()
+
+
  
     
 

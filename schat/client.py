@@ -13,9 +13,7 @@ db = MySQLdb.connect(host='127.0.0.1',    # your host, usually localhost
                      passwd="science",  # your password
                      db="chat",
                 )        # name of the data base
-#from pymongo import MongoClient
-#client = MongoClient()
-#db = client.test 
+
 cursor = db.cursor()
 def prompt() :
     sys.stdout.write('<You> ')
@@ -56,6 +54,7 @@ if __name__ == "__main__":
                 data = sock.recv(4096)
                 #print "**"
                 #print "INSERT INTO clientchat (text) VALUES ('%s')"%(data)
+
                 if (data is not None):
                     cursor.execute("INSERT INTO chating (text) VALUES ('%s')"%(data))
                     db.commit()
