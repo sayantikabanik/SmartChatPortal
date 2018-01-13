@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <title>Smart Chat Portal: {{ room }}</title>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/javascript" src="js/jquery-1.2.6.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+            var socket;
+            $(document).ready(function(){
+                socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+                socket.on('connect', function() {
+                    socket.emit('joined', {});
+                });
+                socket.on('status', function(data) {
+                    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                });
+                socket.on('message', function(data) {
+                    $('#chat').val($('#chat').val() + data.msg + '\n');
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                });
+                $('#text').keypress(function(e) {
+                    var code = e.keyCode || e.which;
+                    if (code == 13) {
+                        text = $('#text').val();
+                        $('#text').val('');
+                        socket.emit('text', {msg: text});
+                    }
+                });
+            });
+            function leave_room() {
+                socket.emit('left', {}, function() {
+                    socket.disconnect();
+
+                    // go back to the login page
+                    window.location.href = "{{ url_for('main.index') }}";
+                });
+            }
+        </script>
+        <style type="text/css">
+            form {
+                margin: 20px auto;
+                width: 500px;
+            }
+
+            #textariffic {
+                width: 400px;
+                height: 400px;
+                font-size: 12px;
+                font-family: monospace;
+                line-height: 15px;
+            }
+        </style>
+        <script type="text/javascript">
+            $(function() {
+                $('input')
+                    .keyup(checkSpeed);
+            });
+
+            var iLastTime = 0;
+            var iTime = 0;
+            var iTotal = 0;
+            var iKeys = 0;
+            var count=0;
+            var emo=null;
+            function checkSpeed() {
+                iTime = new Date().getTime();
+
+                if (iLastTime != 0) {
+                    iKeys++;
+                    iTotal += iTime - iLastTime;
+                    iWords = $('input').val().split(/\s/).length;
+                    $('#CPM').html(Math.round(iKeys / iTotal * 6000, 2));
+                    $('#WPM').html(Math.round(iWords / iTotal * 6000, 2));
+                    
+                    if((Math.round(iKeys / iTotal * 6000, 2))>=80){
+                        $('#emo').html("you seem excited today");
+                        //break;
+                    }
+                    else if((Math.round(iKeys / iTotal * 6000, 2))<=15){
+                        $('#emo').html("you seem sad today");
+                        //break;
+                    }
+                    else{
+                        $('#emo').html("you seem in a good mood today");
+                       // break;
+                    }
+                    
+
+                
+            }
+
+                iLastTime = iTime;
+              
+            }
+
+
+        </script>
+       
+
+    </head>
+    <body>
+        <h1>Smart Chat Portal:- {{ room }}</h1>
+        <textarea id="chat" cols="80" rows="20" ></textarea><br><br>
+        <input id="text" size="80" placeholder="Enter your message here"><br><br>
+       <button height=20px><a href="#" onclick="leave_room();">Leave this room</a></button>
+       
+            <p>
+                <span class="label"><strong>Charecters typed per minute: </strong></span>
+                <span id="CPM">0</span>
+            </p>
+            <p>
+                <span class="label"><strong>Words per minute: </strong></span>
+                <span id="WPM">0</span>
+            </p>
+            <p> 
+                <span class="label"><strong>Emotion communicated based on typing speed: </strong></span>
+                <span id="emo">null</span>
+            </p>
+          
+        
+     </body>
+
+
+</html>
