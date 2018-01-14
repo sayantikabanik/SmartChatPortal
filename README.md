@@ -14,6 +14,6 @@ Overall the chat will be powered with web sockets and further it will be integra
 
 <h2> How to run the application </h2>
 
-<p>To run this application install the requirements in a virtual environment, run `python chat.py` and visit `http://localhost:5000` on one or more browser tabs.</p> <br>
+<p>To run this application install the requirements in a virtual environment, run `python chat.py` and visit `http://localhost:5000` on one or more browser tabs.</p> 
 
 <p>or by using server using the Flask cli: $ FLASK_APP=chat.py flask run</p>
