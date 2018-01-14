@@ -1,10 +1,19 @@
-Flask-SocketIO-Chat
+Smart Chat portal 
 ===================
 
-A simple chat application that demonstrates how to structure a Flask-SocketIO application.
+<strong><em>Learn It Girl Third edition.</em></strong>
+<div style="color:#0000FF">
+<strong>Language: Python</strong>
+  
+The project that I will be working on along with my mentor is titled as "Smart Chat Portal". 
+The application will detect the emotions of the person with whom we are chatting based on the typing speed, kind of words being used etc. This can be very important generic feature for any chat application, that can be combined with AI for further exploitation near in future. Analyzing the sentiments in an efficient manner. 
+The primary language that i will be using is python. 
+Apart from that the front end will comprise of HTML, CSS and JavaScript. 
+Overall the chat will be powered with web sockets and further it will be integrated with AI algorithms to make an end to end application.
+</div><br>
 
-To run this application install the requirements in a virtual environment, run `python chat.py` and visit `http://localhost:5000` on one or more browser tabs.
+<h2> How to run the application </h2>
 
-If you prefer, you can also start the server using the Flask cli:
+<p>To run this application install the requirements in a virtual environment, run `python chat.py` and visit `http://localhost:5000` on one or more browser tabs.</p> <br>
 
-    $ FLASK_APP=chat.py flask run
+<p>or by using server using the Flask cli: $ FLASK_APP=chat.py flask run</p>

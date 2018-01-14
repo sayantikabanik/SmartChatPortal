@@ -13,6 +13,7 @@ def joined(message):
     room = session.get('room')
     join_room(room)
     emit('status', {'msg': session.get('name') + ' has entered the room.'}, room=room)
+    #socketio.sleep(0)
 
 
 @socketio.on('text', namespace='/chat')
@@ -24,6 +25,7 @@ def text(message):
     print(message , session.get('name'))
     opinion=TextBlob(str(message),analyzer=NaiveBayesAnalyzer())
     print(opinion.sentiment)
+    #socketio.sleep(0)
 
 
 @socketio.on('left', namespace='/chat')
@@ -33,4 +35,6 @@ def left(message):
     room = session.get('room')
     leave_room(room)
     emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)
+    #socketio.sleep(0)
+
 
