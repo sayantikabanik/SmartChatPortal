@@ -17,3 +17,18 @@ Overall the chat will be powered with web sockets and further it will be integra
 <p>To run this application install the requirements in a virtual environment, run `python chat.py` and visit `http://localhost:5000` on one or more browser tabs.</p> 
 
 <p>or by using server using the Flask cli: $ FLASK_APP=chat.py flask run</p>
+
+<strong> Getting started with chat between two clients (using web sockets)</strong>
+<ul><li>Alpha and Beta enters the chat room</li></ul>
+<img src="https://github.com/sayantikabanik/SmartChatPortal/blob/master/smartchatportal%20output/alpha%20entering.png" alt="loading" height="400" width="800"/>
+<img src="https://github.com/sayantikabanik/SmartChatPortal/blob/master/smartchatportal%20output/beta%20entering.png" alt="loading" height="300" width="500"/>
+
+<ul><li> The clients communicate with each other via web sockets (Flask SocketIO)
+<img src="https://github.com/sayantikabanik/SmartChatPortal/blob/master/smartchatportal%20output/client%20server%20communicating.png" alt="loading" height="300" width="500"/>
+
+<strong><p>The sentiments are analysed based on the content and typing speed.
+The anaysis of speed along with the content makes the entire conversation portal smart and more efficient.The javaScript funtion calculates user’s typing speed and
+converts into a feature for intensity recognition. A very
+high typing speed indicates Very Excited user and a very
+low speed indicates a Very Muted or least intense user.</p></strong>
+<img src="https://github.com/sayantikabanik/SmartChatPortal/blob/master/smartchatportal%20output/alpha%20analysis.png" lt="loading" height="300" width="500"/>  
