@@ -1,7 +1,7 @@
 Smart Chat portal 
 ===================
 **_Learn It Girl Third edition_**
-
+* **Mentored by**:[@MeRajat](https://github.com/MeRajat)
 #### Framework used-Flask
 The project that I will be working on along with my mentor is titled as "Smart Chat Portal". 
 The application will detect the emotions of the person with whom we are chatting based on the typing speed, kind of words being used etc. This can be very important generic feature for any chat application, that can be combined with AI for further exploitation near in future. Analyzing the sentiments in an efficient manner. 
