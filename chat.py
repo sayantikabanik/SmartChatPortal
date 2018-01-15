@@ -1,7 +1,7 @@
 #!/bin/env python
 from app import create_app, socketio
 import os
-port= int(os.environ.get('PORT',5000))
+port= int(os.environ.get('PORT',8000))
 
 app = create_app(debug=True)
 
