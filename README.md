@@ -3,11 +3,9 @@ Smart Chat portal
 **_Learn It Girl Third edition_**
 * **Mentored by**:[@MeRajat](https://github.com/MeRajat)
 #### Framework used-Flask
-The project that I will be working on along with my mentor is titled as "Smart Chat Portal". 
-The application will detect the emotions of the person with whom we are chatting based on the typing speed, kind of words being used etc. This can be very important generic feature for any chat application, that can be combined with AI for further exploitation near in future. Analyzing the sentiments in an efficient manner. 
-The primary language that i will be using is python. 
-Apart from that the front end will comprise of HTML, CSS and JavaScript. 
-Overall the chat will be powered with web sockets and further it will be integrated with AI algorithms to make an end to end application.
+The application I developed is titled as "Smart Chat Portal ". It  has immense scope. Humans are build on the framework of emotions. Hence i have taken into account extra parameters to accurately determine it.
+"Smart Chat Portal" detects the emotions of the person with whom we are chatting based on the typing speed, kind of words being used etc. This can be very important generic feature for any chat application, that can be combined with AI for further exploitation near in future. Analyzing the sentiments in an efficient manner. The primary language that i will be using is python. Apart from that the front end is made with jinja2 with parts of  JavaScript. Overall the chat is powered with web sockets and further it will be integrated with ML algorithms to make an end to end application.
+Text Analysis -TextBlob combined with naivebayesclassifier.
 
 #### Running the application
 To run this application install the requirements in a **virtual environment**, run *python chat.py* and visit http://localhost:5000 on one or more browser tabs.
